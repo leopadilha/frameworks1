@@ -1,0 +1,8 @@
+﻿@model Scheduling
+
+<form  asp-action="Remove" asp-controller="Scheduling" method="post">
+    <input type="hidden" asp-for="@Model.Id"/>
+    <p>Deseja realmente desmarcar o agendamento do dia </p><strong> @Model.Date.ToString("dd/MM/yyyy")</strong> com a cliente @Model.Client.Name</br>
+    <a role="button" asp-action="index" asp-controller="Scheduling" class="btn btn-dark">Cancelar</a>  
+     <button type="submit" class="btn btn-danger">Deletar</button>
+</form>

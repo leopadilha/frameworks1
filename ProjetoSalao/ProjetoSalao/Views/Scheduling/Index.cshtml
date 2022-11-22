@@ -1,0 +1,93 @@
+﻿@model List<Scheduling>
+ 
+@{
+    ViewData["Title"] = "Lista de Agendamentos";
+}
+
+<a class="btn btn-dark" asp-controller="Scheduling" asp-action="Create" role="button" >Cadastrar Novo Agendamento</a>
+
+    <h2>Agendamentos Cadastrados</h2>
+
+    <table id="table-clients">
+        <thead>
+            <tr>
+                <th scope="col">Data</th>
+                <th scope="col">Horário</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Serviço</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+
+             @foreach (Scheduling scheduling in Model)
+                {
+            <tr>
+                <td scope="row">@scheduling.Date.ToString("dd/MM/yyyy")</td>
+                <td>@scheduling.Hour</td>
+                <th>@scheduling.Client.Name <a href="#" data-value="@scheduling.ClientId" class="btnDetails"><i class="fa fa-search"></i></a></th>
+                <td>@scheduling.Service.Description</td>
+                <td class="valor">R$ @scheduling.Service.Price</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@scheduling.Id"><i class="fa fa-edit"></i></a>
+                    <a href="#" data-value="@scheduling.Id" class="btnDelete"><i class="fa fa-delete-left"></i></a>
+                </td>
+            </tr>
+                }
+            
+        </tbody>
+    </table>
+
+
+
+ <div class="modal fade" id="EditModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titleModal"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-body-edit">
+      </div>
+      </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+      
+             $(".btnDelete").click(function() {
+
+                let id = $(this).data("value");
+
+                $("#modal-body-edit").load("/Scheduling/Delete/" + id,
+                    function() {
+                         $("#titleModal").html("Desmarcar agendamento")
+                        $("#EditModal").modal("show")
+                    });
+            });
+
+              $(".btnDetails").click(function() {
+
+                let id = $(this).data("value");
+
+                $("#modal-body-edit").load("/Client/Details/" + id,
+                    function() {
+                         $("#titleModal").html("Detalhes do cliente")
+                        $("#EditModal").modal("show")
+                    });
+            });
+
+              $(".error").click(function() {
+                   $(".error" ).remove();
+                   $( "p" ).removeClass("delete-error")
+                   $(".btn-dark").css("margin-top", "-1px");
+               });
+        
+      });
+    </script>    
+
+}

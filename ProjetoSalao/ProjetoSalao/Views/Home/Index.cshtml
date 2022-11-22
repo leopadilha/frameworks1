@@ -1,0 +1,118 @@
+﻿@model List<Scheduling>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (Model.Any())
+    {
+   
+        <div class="text-center"><h1>Agendamentos do Dia</h1></div>
+
+        <table id="table-clients">
+            <thead>
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Horário</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Serviço</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (Scheduling scheduling in Model)
+                    {
+                    <tr>
+                    <td>@scheduling.Date.ToString("dd/MM/yyyy")</td>
+                    <td>@scheduling.Hour</td>
+                    <th>@scheduling.Client.Name <a href="#" data-value="@scheduling.ClientId" class="btnDetails"><i class="fa fa-search"></i></a></th>
+                    <td>@scheduling.Service.Description</td>
+                    <td  class="valor">@scheduling.Service.Price</td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Scheduling" asp-route-id="@scheduling.Id"><i class="fa fa-edit"></i></a>
+                        <a href="#" data-value="@scheduling.Id" class="btnDelete"><i class="fa fa-delete-left"></i></a>
+                         <a href="#" data-value="@scheduling.Id" class="btnReceipt"><i class="fa-solid fa-receipt"></i></a>
+                       
+                    </td>
+            </tr>
+                    }
+            </tbody>
+        </table>
+    }
+    else
+    {
+       <div id="aviso_agendamento">
+            <img style="width:15vw" src="~/img/icone_atencao.jpeg" id="icone_atencao_home"/>   
+            Não existem agendamentos para @DateTime.Now.ToString("dd/MM/yyyy")
+        </div>
+    }
+
+<style>
+    #aviso_agendamento {
+        margin:50px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+ <div class="modal fade" id="EditModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titleModal"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-body-edit">
+      </div>
+      </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+      
+             $(".btnDelete").click(function() {
+
+                let id = $(this).data("value");
+
+                $("#modal-body-edit").load("/Scheduling/Delete/" + id,
+                    function() {
+                         $("#titleModal").html("Desamarcar agendamento")
+                        $("#EditModal").modal("show")
+                    });
+            });
+
+              $(".btnDetails").click(function() {
+
+                let id = $(this).data("value");
+
+                $("#modal-body-edit").load("/Client/Details/" + id,
+                    function() {
+                         $("#titleModal").html("Detalhes do agendamento")
+                        $("#EditModal").modal("show")
+                    });
+            });
+
+                $(".btnReceipt").click(function() {
+
+                let id = $(this).data("value");
+
+                $("#modal-body-edit").load("/Scheduling/Receipt/" + id,
+                    function() {
+                         $("#titleModal").html("")
+                         $("#EditModal").modal("show")
+                    });
+            });
+
+             $(".btn-close").click(function() {
+                  location.reload()
+             });
+        
+      });
+    </script>    
+
+}
+

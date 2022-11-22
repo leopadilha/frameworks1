@@ -1,0 +1,93 @@
+﻿@model List<Provider>
+ 
+@{
+    ViewData["Title"] = "Lista de Fornecedores";
+}
+
+@if (@TempData["MessageError"] != null)
+    {
+        <a href="#"> <p class="error delete-error" > <i class="fa-solid fa-xmark"></i> @TempData["MessageError"]</p></a><br />
+    } 
+
+<a class="btn btn-dark" asp-controller="Provider" asp-action="Create" role="button">Cadastrar Novo Fornecedor</a>
+
+<h2>Fornecedores Cadastrados</h2>
+
+ <table class="table-striped table-hover" id="table-clients">
+     <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Contato</th>
+            <th scope="col">Ações</th>
+        </tr>
+     </thead>
+     <tbody class="table-group-divider table-light">
+
+        @foreach (Provider provider in Model)
+        {
+            <tr>
+                 <th>@provider.Name</th>
+                 <td>@provider.Cpf</td>
+                 <td>@provider.Contact</td>
+                 <td>
+                    <a asp-action="Edit" asp-route-id="@provider.Id"><i class="fa fa-edit"></i></a>
+                    <a href="#" class="btnDetails" data-value="@provider.Id"><i class="fa fa-search"></i></a>
+                    <a href="#" class="btnDelete" data-value="@provider.Id"><i class="fa fa-delete-left"></i></a>
+                 </td>
+            </tr>
+        }    
+     </tbody>
+ </table>
+
+
+ <div class="modal fade" id="EditModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titleModal"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-body-edit">
+      </div>
+      </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $(".btnDetails").click(function() {
+
+                let id = $(this).data("value");
+
+                $("#modal-body-edit").load("/Provider/Details/" + id,
+                    function() {
+                        $("#titleModal").html("Detalhes do fornecedor")
+                        $("#EditModal").modal("show")
+                    });
+            });
+      
+             $(".btnDelete").click(function() {
+
+                let id = $(this).data("value");
+
+                $("#modal-body-edit").load("/Provider/Delete/" + id,
+                    function() {
+                         $("#titleModal").html("Deletar Fornecedor")
+                        $("#EditModal").modal("show")
+                    });
+            });
+
+             $(".error").click(function() {
+                  $(".error" ).remove();
+                  $( "p" ).removeClass("delete-error")
+                  $(".btn-dark").css("margin-top", "-1px");
+             });
+            
+      });
+    </script>    
+
+}

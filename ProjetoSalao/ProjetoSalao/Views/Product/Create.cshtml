@@ -1,0 +1,32 @@
+﻿@model ProjetoSalao.Models.ProductFormViewModel  
+
+@{
+    ViewData["title"] = "Cadastro de Produtos";
+}
+
+<h1>Cadastrar Produto</h1>
+
+<form asp-controller="Product" asp-action="create" method="post">
+  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+  <div class="mb-3">
+    <label for="produto" class="form-label">Produto</label>
+    <input type="text" asp-for="Product.Name" class="form-control" id="Produto">
+     <span asp-validation-for="Product.Name" class="text-danger"></span>
+  </div>
+  <div class="mb-3">
+    <label for="valor" class="form-label">R$ Valor</label>
+    <input type="text" asp-for="Product.Price" class="form-control" id="Valor">
+      <span asp-validation-for="Product.Price" class="text-danger"></span>
+  </div>
+  <div class="mb-3">
+   <label for="Product.ProviderId" class="form-label">Fornecedor</label>
+   <select asp-for="Product.ProviderId" class="form-select" asp-items="@(new SelectList(Model.Providers, "Id", "Name"))"></select>
+  </div>
+   <button type="submit" class="btn btn-dark">Cadastrar Produto</button>
+   <a role="button" asp-action="index" asp-controller="Product" class="btn btn-dark">Voltar</a>
+ </form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    } }

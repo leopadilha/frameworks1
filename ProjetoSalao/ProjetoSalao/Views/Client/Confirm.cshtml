@@ -1,0 +1,10 @@
+﻿@model Client
+
+<form  asp-action="Remove" asp-controller="Client" method="post">
+    <input type="hidden" asp-for="@Model.Id"/>
+    <p>Deseja realmente deletar o cliente </p><strong> @Model.Name</strong><br />
+    <a role="button" asp-action="index" asp-controller="Client" class="btn btn-dark">Cancelar</a>
+    <button type="submit" class="btn btn-danger">Deletar</button>
+</form>
+
+ 

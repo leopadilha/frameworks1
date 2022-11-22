@@ -1,0 +1,57 @@
+﻿@model Provider
+
+@{
+    ViewData["title"] = "Cadastro de forncedores";
+}
+
+<h1>Cadastro de Fornecedores</h1>
+
+<p>Preencha o formulário para cadastrar um fornecedor</p>
+
+<form asp-controller="Provider" asp-action="Create" method="post">
+  <div class="mb-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <label for="nome" class="form-label">Nome</label>
+    <input type="text" asp-for="Name" class="form-control" id="nome">
+    <span asp-validation-for="Name" class="text-danger"></span>
+  </div>
+  <div class="mb-3">
+    <label for="Cpf" class="form-label">CPF</label>
+    <input type="text" asp-for="Cpf" class="form-control" id="Cpf">
+    <span asp-validation-for="Cpf" class="text-danger"></span>
+  </div>
+  <div class="mb-3">
+    <label for="Contato" class="form-label">Contato</label>
+    <input type="text" asp-for="Contact" class="form-control" id="Telefone">
+   <span asp-validation-for="Contact" class="text-danger"></span>
+  </div>
+  <div class="mb-3">
+    <label for="Endereço" class="form-label">Endereço</label>
+    <input type="text" asp-for="Adress" class="form-control" id="Endereço">
+   <span asp-validation-for="Adress" class="text-danger"></span>
+  </div>  
+  <div class="mb-3">
+    <label for="complemento" class="form-label">Complemento</label>
+    <input type="text" asp-for="Complement" class="form-control" id="Complemento">
+   <span asp-validation-for="Complement" class="text-danger"></span>
+  </div>
+  <div class="mb-3">
+    <label for="cep" class="form-label">Cep</label>
+    <input type="text" asp-for="ZipCode" class="form-control" id="Cep">
+    <span asp-validation-for="ZipCode" class="text-danger"></span>
+  </div>
+  <button type="submit" class="btn btn-dark">Cadastrar</button>
+  <a role="button" asp-action="index" asp-controller="Provider" class="btn btn-dark">Voltar</a>
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+<style>
+    form{
+        margin-top:20px;
+    }
+
+</style>

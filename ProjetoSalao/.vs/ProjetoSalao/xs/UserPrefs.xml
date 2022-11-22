@@ -1,0 +1,45 @@
+﻿<Properties StartupConfiguration="{5584FE06-C9A5-4BA6-A617-BD86D2A49E26}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ProjetoSalao/Models/Cliente.cs">
+    <Files>
+      <File FileName="ProjetoSalao/Views/Cliente/Index.cshtml" Line="11" Column="1" />
+      <File FileName="ProjetoSalao/Controllers/ClienteController.cs" Line="39" Column="46" />
+      <File FileName="ProjetoSalao/Views/Cliente/Cadastrar.cshtml" Line="6" Column="69" />
+      <File FileName="ProjetoSalao/Views/Home/Index.cshtml" Line="47" Column="1" />
+      <File FileName="ProjetoSalao/Data/BancoContext.cs" Line="16" Column="30" />
+      <File FileName="ProjetoSalao/Models/Cliente.cs" Line="11" Column="3" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ProjetoSalao" expanded="True">
+            <Node name="ProjetoSalao" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Cliente.cs" selected="True" />
+              </Node>
+              <Node name="Repository" expanded="True">
+                <Node name="ClienteRepository" expanded="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Cliente" expanded="True" />
+                <Node name="Home" expanded="True" />
+                <Node name="Shared" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.ProjetoSalao PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+</Properties>

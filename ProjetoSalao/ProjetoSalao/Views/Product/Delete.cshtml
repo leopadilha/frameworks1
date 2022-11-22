@@ -1,0 +1,8 @@
+﻿@model Product
+
+<form  asp-action="Remove" asp-controller="Product" method="post">
+    <input type="hidden" asp-for="@Model.Id"/>
+    <p>Deseja realmente deletar o produto </p><strong> @Model.Name</strong></br>
+    <a role="button" asp-action="index" asp-controller="Service" class="btn btn-dark">Cancelar</a>  
+     <button type="submit" class="btn btn-danger">Deletar</button>
+</form>

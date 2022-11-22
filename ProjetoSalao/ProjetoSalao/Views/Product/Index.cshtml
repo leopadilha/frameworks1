@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["title"] = "Lista de produtos";
+}
+    
+    <a class="btn btn-dark" asp-action="Create" role="button" >Cadastrar Novo Produto</a>  
+
+    <h2>Produtos Cadastrados</h2>
+
+    <table class="table-striped table-hover" id="table-clients">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Fornecedor</th>
+                <th scope="col">Ações</th>
+            </tr>
+               
+        </thead>
+        <tbody class="table-group-divider table-light">
+
+            @foreach (Product product in ViewBag.Product)
+                {
+            <tr>
+                <td scope="row">@product.Name</td>
+                <td>R$ @product.Price</td>
+                <td>@product.Provider.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@product.Id"><i class="fa fa-edit"></i></a>
+                    <a href="#" class="btnDelete" data-value="@product.Id"><i class="fa fa-delete-left"></i></a>
+                </td>
+            </tr>
+                }
+            
+        </tbody>
+    </table>
+
+ <div class="modal fade" id="EditModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titleModal"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-body-edit">
+      </div>
+      </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $(".btnDelete").click(function() {
+
+                let id = $(this).data("value");
+
+                $("#modal-body-edit").load("/Product/Delete/" + id,
+                    function() {
+                         $("#titleModal").html("Deletar Produto")
+                        $("#EditModal").modal("show")
+                    });
+            });
+        
+      });
+    </script>    
+
+}

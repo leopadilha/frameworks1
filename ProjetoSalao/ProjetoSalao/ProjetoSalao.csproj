@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migration\**" />
+    <Compile Remove="Views\Cliente\**" />
+    <Content Remove="Migration\**" />
+    <Content Remove="Views\Cliente\**" />
+    <EmbeddedResource Remove="Migration\**" />
+    <EmbeddedResource Remove="Views\Cliente\**" />
+    <None Remove="Migration\**" />
+    <None Remove="Views\Cliente\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Client\ConfirmDelete.cshtml.cs" />
+    <Compile Remove="Views\Client\Remove.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Client\ConfirmDelete.cshtml" />
+    <Content Remove="Views\Client\Delete.cshtml" />
+    <Content Remove="Views\Client\Remove.cshtml" />
+    <Content Remove="Views\Client\Remove.razor" />
+    <Content Remove="Views\Product\Details.cshtml" />
+    <Content Remove="Views\Scheduling\Details.cshtml" />
+    <Content Remove="Views\Service\Details.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Recognizers.Text" Version="1.8.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.6" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Cliente\" />
+    <None Remove="Repository\SchedulingRepository\" />
+    <None Remove="Repository\ClienteRepository\ClientRepository" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+    <Folder Include="Repository\schedulingRepository.cs\" />
+    <Folder Include="Views\Product\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Repository\ClientRepository\ClientRepository.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+  </ItemGroup>
+</Project>

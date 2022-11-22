@@ -1,0 +1,30 @@
+﻿@model Service
+@{
+    ViewData["Tiltle"] = "Cadastrar Serviço";
+}
+<h1>Cadastrar Serviço</h1>
+
+<p>Informe todos os campos para cadastrar um serviço</p>
+
+<form asp-controller="Service" asp-action="create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+      <label for="servico" class="form-label">Descrição</label>
+      <input type="text" asp-for="Description" class="form-control" id="Servico">
+      <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label for="valor" class="form-label">Valor</label>
+        <input type="text" asp-for="Price" class="form-control" id="Valor">
+        <span asp-validation-for="Price" class="text-danger"></span>
+     </div>
+     <button type="submit" class="btn btn-dark">Cadastrar</button>
+     <a role="button" asp-action="index" asp-controller="Service" class="btn btn-dark">Voltar</a>
+ </form>
+
+ 
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,48 @@
+﻿@model ProjetoSalao.Models.SchedulingFormViewModel  
+
+@{
+    ViewData["title"] = "Agendamentos";
+}
+
+<h1>Agendamento</h1>
+
+<form asp-controller="Scheduling" asp-action="Create" method="post">
+  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+  <div class="mb-3">
+    <label for="data" class="form-label">Data do Agendamento</label>
+    <input type="date" asp-for="Scheduling.Date" class="form-control" id="data">
+     <span asp-validation-for="Scheduling.Date" class="text-danger"></span>
+  </div>
+  <div class="mb-3">
+    <label for="hora" class="form-label">Horário do agendamento</label>
+    <input type="time" asp-for="Scheduling.Hour" class="form-control" id="hora">
+      <span asp-validation-for="Scheduling.Hour" class="text-danger"></span>
+  </div>
+  <div class="mb-3">
+   <label for="Scheduling.ClientId" class="form-label">Clientes</label>
+   <select asp-for="Scheduling.ClientId" class="form-select" asp-items="@(new SelectList(Model.Clients, "Id", "Name"))"></select>
+  </div>
+  
+  <div class="mb-3">
+   <label for="Scheduling.ServiceId" class="form-label">Serviços</label>
+   <select asp-for="Scheduling.ServiceId" class="form-select" asp-items="@(new SelectList(Model.Services, "Id", "Description"))"></select>
+  </div>
+  
+   <button type="submit" class="btn btn-dark">Agendar</button>
+   <a role="button" asp-action="index" asp-controller="Scheduling" class="btn btn-dark">Voltar</a>
+ </form>
+
+@if (TempData["MessageExists"] != null)
+{
+    <i class="fa-solid fa-xmark"></i><p class="error"> @TempData["MessageExists"]</p>
+}
+
+@if (TempData["MessageError"] != null)
+{
+    <i class="fa-solid fa-xmark"></i> <p class="error">@TempData["MessageError"]</p>
+}
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    } }
+

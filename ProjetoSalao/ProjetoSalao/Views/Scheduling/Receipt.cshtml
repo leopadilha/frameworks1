@@ -1,0 +1,69 @@
+﻿@model Scheduling
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Receipt.css" asp-append-version="true" />
+</head>
+<table class="body-wrap">
+    <tbody><tr>
+        <td></td>
+        <td class="container" width="600">
+            <div class="content">
+                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                    <tbody><tr>
+                        <td class="content-wrap aligncenter">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tbody><tr>
+                                    <td class="content-block">
+                                        <img style="width:150px" src="~/img/logo.png" id="icone_atencao_home"/> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        <table class="invoice">
+                                            <tbody><tr>
+                                                <td>@Model.Client.Name<br>Agendamento @Model.Id<br>@DateTime.Now</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table class="invoice-items" cellpadding="0" cellspacing="0">
+                                                        <tbody><tr>
+                                                            <td>@Model.Service.Description - @Model.Hour</td>
+                                                            <td class="alignright">R$ @Model.Service.Price</td>
+                                                        </tr>
+                                                        <tr class="total">
+                                                            <td class="alignright" width="80%">Total </td>
+                                                            <td class="alignright">R$ @Model.Service.Price</td>
+                                                        </tr>
+                                                    </tbody></table>
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        <a href="#">www.lindadebunitanails.com.br</a><br />
+                                        <a href="mailto:">camilapadilha@gmail.com</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        Silvino Oliveira 75, Vila Nova - Porto Alegre
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                        </td>
+                    </tr>
+                </tbody></table>
+               
+                </div>
+        </td>
+        <td></td>
+    </tr>
+</tbody>
+</table>
+	
+</html>
+
+

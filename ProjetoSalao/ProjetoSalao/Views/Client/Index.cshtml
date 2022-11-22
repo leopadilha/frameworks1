@@ -1,0 +1,98 @@
+﻿@model List<Client>
+ 
+@{
+    ViewData["Title"] = "Lista de Clientes";
+}
+
+ @if (@TempData["MessageError"] != null)
+    {
+        <a href="#"> <p class="error delete-error" > <i class="fa-solid fa-xmark"></i> @TempData["MessageError"]</p></a><br />
+    } 
+<a class="btn btn-dark" asp-controller="Client" asp-action="Create" role="button" >Cadastrar Novo Cliente</a>
+
+    <h2>Clientes Cadastrados</h2>
+
+    <table id="table-clients">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Data de Nascimento</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+
+                @foreach (Client client in Model)
+                {
+            <tr>
+                <th scope="row">@client.Name</th>
+                <td>@client.Cpf</td>
+                <td>@client.Birthdate.ToString("dd/MM/yyyy")</td>
+                <td>@client.Telephone</td>
+                <td>
+                    <a asp-action="edit" asp-route-id="@client.Id"><i class="fa fa-edit"></i></a>
+                    <a href="#" data-value="@client.Id" class="btnDetails"><i class="fa fa-search"></i></a>
+                    <a href="#" data-value="@client.Id" class="btnDelete"><i class="fa fa-delete-left"></i></a>
+                </td>
+            </tr>
+                }
+            
+        </tbody>
+    </table>
+
+
+
+ <div class="modal fade" id="EditModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titleModal"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-body-edit">
+      </div>
+      </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $(".btnDetails").click(function() {
+
+                let id = $(this).data("value");
+
+                $("#modal-body-edit").load("/Client/Details/" + id,
+                    function() {
+                        $("#titleModal").html("Detalhes do Cliente")
+                        $("#EditModal").modal("show")
+                    });
+            });
+      
+             $(".btnDelete").click(function() {
+
+                let id = $(this).data("value");
+
+                $("#modal-body-edit").load("/Client/Confirm/" + id,
+                    function() {
+                         $("#titleModal").html("Deletar Cliente")
+                        $("#EditModal").modal("show")
+                    });
+            });
+
+               $(".error").click(function() {
+                   $(".error" ).remove();
+                   $( "p" ).removeClass("delete-error")
+                   $(".btn-dark").css("margin-top", "-1px");
+               });
+      });
+    </script>    
+
+}
+
+
+

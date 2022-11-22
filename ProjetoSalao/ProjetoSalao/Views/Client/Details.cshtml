@@ -1,0 +1,43 @@
+﻿@model Client
+
+    <fieldset disabled>
+      <form>
+          <div class="mb-3">
+                <label for="inputEmail4" class="form-label">Nome</label>
+                <input type="text" asp-for="Name" class="form-control" id="name" aria-describedby="name"/>
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword4" class="form-label">Cpf</label>
+                <input type="text" asp-for="Cpf" class="form-control" id="Cpf">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="telefone">Telefone</label>
+                <input type="text" asp-for="Telephone" class="form-control" id="Telefone" >
+            </div>
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label class="form-label" for="dataNasc">Data de nascimento</label>
+                    <input type="date" asp-for="Birthdate" class="form-control" id="dataNasc">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="cpf" class="form-label">Endereco</label>
+                <input type="text" asp-for="Adress" class="form-control" id="Endereco">
+            </div>
+            <div class="mb-3">
+                <label for="cpf" class="form-label">Complemento</label>
+                <input type="text" asp-for="Complement" class="form-control" id="complemento"/>
+            </div>
+            <div class="mb-3">
+                <label for="cpf" class="form-label">Cep</label>
+                <input type="text" asp-for="Zipcode" class="form-control" id="Cep">
+            </div>
+        </form>
+    </fieldset>
+
+<style>
+    h1{
+        margin-bottom:10px;
+    }
+</style>
+

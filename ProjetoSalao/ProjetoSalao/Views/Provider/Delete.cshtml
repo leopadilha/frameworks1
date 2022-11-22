@@ -1,0 +1,9 @@
+﻿@model Provider
+
+<form  asp-action="Remove" asp-controller="Provider" method="post">
+    <input type="hidden" asp-for="@Model.Id"/>
+    <p>Deseja realmente deletar o fornecedor </p><strong> @Model.Name</strong></br>
+    <a role="button" asp-action="index" asp-controller="Service" class="btn btn-dark">Cancelar</a>  
+     <button type="submit" class="btn btn-danger">Deletar</button>
+</form>
+      
